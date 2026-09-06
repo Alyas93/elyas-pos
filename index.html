@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>صيدلية الياس — نقطة بيع</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f5c46">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
   :root{--safet:0px;--safeb:0px;--ink:#0f1f1a;--muted:#5f7169;--line:#dfe7e3;--paper:#f5f8f7;--card:#fff;
         --brand:#0f5c46;--brand2:#18a37b;--accent:#0ea5a5;--warn:#b3450f;--bad:#a11d1d;--soft:#e9f4ef}
@@ -1157,6 +1161,10 @@ function init() {
   go("home");
 }
 document.addEventListener("DOMContentLoaded", init);
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+}
+
 
 /* ---------- الباركود ---------- */
 let stream = null, loop = null, LASTERR = "";

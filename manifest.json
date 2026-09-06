@@ -1,12 +1,14 @@
 {
-  "background_color": "#ffffff",
+  "background_color": "#f5f8f7",
   "dir": "rtl",
   "display": "standalone",
-  "name": "alyas93.github",
-  "orientation": "portrait",
-  "scope": "/elyas-pos/",
-  "short_name": "alyas93.github",
-  "start_url": "/elyas-pos/",
-  "theme_color": "#ffffff",
+  "name": "صيدلية الياس — نقطة بيع",
+  "orientation": "any",
+  "scope": "./",
+  "short_name": "صيدلية الياس",
+  "start_url": "./index.html",
+  "theme_color": "#0f5c46",
+  "description": "نظام إدارة صيدلية ونقطة بيع وإدارة المخزون",
+  "id": "elyas93-pharmacy",
   "lang": "ar"
 }
