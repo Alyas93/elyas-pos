@@ -1,14 +1,51 @@
 {
-  "background_color": "#f5f8f7",
-  "dir": "rtl",
-  "display": "standalone",
   "name": "صيدلية الياس — نقطة بيع",
-  "orientation": "any",
-  "scope": "./",
   "short_name": "صيدلية الياس",
-  "start_url": "./index.html",
-  "theme_color": "#0f5c46",
   "description": "نظام إدارة صيدلية ونقطة بيع وإدارة المخزون",
-  "id": "elyas93-pharmacy",
-  "lang": "ar"
+  "id": "/elyas-pos/",
+  "start_url": "/elyas-pos/",
+  "scope": "/elyas-pos/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "ar",
+  "background_color": "#f5f8f7",
+  "theme_color": "#0f5c46",
+  "categories": ["business", "medical", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/elyas-pos/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/elyas-pos/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/elyas-pos/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "شاشة البيع",
+      "short_name": "بيع",
+      "description": "فتح نقطة البيع مباشرة",
+      "url": "/elyas-pos/?tab=sale"
+    },
+    {
+      "name": "المخزون",
+      "short_name": "مخزون",
+      "description": "تصفح المخزون والأسعار",
+      "url": "/elyas-pos/?tab=stock"
+    }
+  ]
 }
