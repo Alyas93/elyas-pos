@@ -836,7 +836,7 @@ function go(tab) {
   if (tab === "sale")   renderCart();
   if (tab === "stock")  { renderStock(); renderPurch(); renderCust(); renderWH(); renderPlans(); }
   if (tab === "alerts") renderAlerts();
-  if (tab === "debt")   renderDebt();
+  if (tab === "debt")   { renderDebt(); renderCust(); }
   if (tab === "dose")   renderDose();
   window.scrollTo(0, 0);
 }
@@ -1192,6 +1192,7 @@ function debtRows() {
   }).sort((a, b) => (b.bal || 0) - (a.bal || 0));
 }
 function renderDebt() {
+  if (!$("d-total") || !$("dlist")) return;
   const rows = debtRows();
   const owing = CUST.filter(c => (c.bal || 0) > 0);
   const total = owing.reduce((a, c) => a + c.bal, 0);
@@ -1927,19 +1928,34 @@ function init() {
   $("doimport").onclick = doImport;
 
   /* الديون */
-  $("dsearch").addEventListener("input", renderDebt);
+  const dsearchEl = $("dsearch");
+  if (dsearchEl) dsearchEl.addEventListener("input", renderDebt);
+
   document.querySelectorAll("#pg-debt .chip").forEach(c => c.onclick = () => {
     document.querySelectorAll("#pg-debt .chip").forEach(x => x.classList.remove("on"));
-    c.classList.add("on"); DFILTER = c.dataset.d; renderDebt();
+    c.classList.add("on");
+    DFILTER = c.dataset.d || "owe";
+    renderDebt();
   });
-  $("dadd").onclick = () => {
-    const n = prompt("اسم الزبون:"); if (!n) return;
-    const v = Number(prompt("مبلغ الدين:")) || 0; if (!v) return;
+
+  const daddEl = $("dadd");
+  if (daddEl) daddEl.onclick = () => {
+    const n = prompt("اسم الزبون:");
+    if (!n) return;
+    const v = Number(prompt("مبلغ الدين:")) || 0;
+    if (!v) return;
     const note = prompt("ملاحظة (اختياري):", "") || "";
-    custAdd(n.trim(), v, note); renderDebt(); renderCust(); toast("سُجّل الدين");
+    custAdd(n.trim(), v, note);
+    renderDebt();
+    renderCust();
+    toast("سُجّل الدين");
   };
-  $("dexport").onclick = exportDebtsXLSX;
-  $("dpdf").onclick = debtReportPDF;
+
+  const dexportEl = $("dexport");
+  if (dexportEl) dexportEl.onclick = exportDebtsXLSX;
+
+  const dpdfEl = $("dpdf");
+  if (dpdfEl) dpdfEl.onclick = debtReportPDF;
   $("repprint").onclick = () => { try { window.print(); } catch (e) { toast("الطباعة غير مدعومة هنا"); } };
   $("exportall").onclick = exportAllXLSX;
   $("dlist").addEventListener("click", e => {
